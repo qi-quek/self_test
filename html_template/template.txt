@@ -1,0 +1,7 @@
+https://codepen.io/ainalem/pen/EQXjOR  -to check display of template without running the code.
+
+muxRouter.PathPrefix("/image").Handler(http.StripPrefix("/image", http.FileServer(http.Dir("image"))))
+-to set image in go html template
+-/image is file name
+-/strip prefix of file name 
+-so you can set root of the content

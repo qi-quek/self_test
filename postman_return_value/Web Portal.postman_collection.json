@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "a69e71ad-3dba-4035-a3e4-70e32625cafc",
+		"name": "Web Portal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2349070"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"NRIC\": \"S7230001G\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:9091/api/v1/auth",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"v1",
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Authentication - OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"NRIC\": \"S7230001G\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9091/api/v1/auth",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9091",
+							"path": [
+								"api",
+								"v1",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Authorization",
+							"value": "Bearer singpass"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 10:17:54 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "159"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ok\": true,\n    \"msg\": \"[AUTH-CTL]: authentication ok\",\n    \"data\": {\n        \"token\": \"singpass\",\n        \"id\": \"USERS.20220602.975310\",\n        \"name\": \"James Dean\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Recycle Transaction for a Sepcific User by Id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"item_cat\" : \"PLASTIC\",\n    \"points\" : 50,\n    \"wgt_in_grams\" : 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:9091/api/v1/users/users_123456/transactions",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "9091",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"users_123456",
+						"transactions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Transaction - OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"item_cat\" : \"PLASTIC\",\n    \"points\" : 50,\n    \"wgt_in_grams\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:9091/api/v1/users/users_123456/transactions",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9091",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"users_123456",
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 14:22:50 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ok\": true,\n    \"msg\": \"[MS-USERS]: added a transaction, successful\",\n    \"data\": {}\n}"
+				}
+			]
+		}
+	]
+}

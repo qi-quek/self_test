@@ -1,0 +1,3 @@
+module concurrency4_multiple_go_close_same_channel
+
+go 1.18
