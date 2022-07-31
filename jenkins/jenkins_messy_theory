@@ -1,0 +1,70 @@
+sh = to execute shell command in pipeline
+
+2> /dev/null
+-whenever you execute a program, the operating system always opens three files
+    ->(a)standard input -file descriptor => 0
+    ->(b)standard output -file descriptor => 1
+    ->(c)standard error -file descriptor => 2
+    ->these 3 files in that order of file
+- > and >>
+    -> ">>" means append
+    -> ">" means truncate and write
+- /dev/null
+    -> redirects something to /dev/null
+    -> so 2> /dev/null means redirect 2(standard error) to
+    ->/dev/null, which means we are discarding standard error
+
+Groovy Hook scripts
+-In several places inside jenkins, a series of "hook scripts" get executed
+->to allow some actions to take place in reaction
+->to some key events
+
+Jenkins Pipeline(or simply Pipeline with a capital P)
+-suite of plugins which supports implementing and integrating continuous delivery pipelines into jenkins
+    ->a CD pipeline is an automated expression of your process for getting software from
+    ->version control right through to your users and customers
+        ->version control(also known as source control/revision control/source code management) is known as source control
+        ->practice of tracking and managing changes to software code.
+        ->a system that records changes to a file or set of files overtime so that
+        ->you can recall specific versions later
+-jenkins automates even version control
+-involves building the software in a reliable and repeatable manner
+-progression the built software(called a "build") through multiple stages of testing and deployment
+
+Jenkins pipeline is written into a text file(called Jenkinsfile)
+->can be committed to a project's source control repositry
+->foundation of "Pipeline-as-code" - treating the CD pipeline a part of the application
+    ->to be versioned and reviewed like any other code
+
+-Creating a Jenkinsfile and committing it to source control provides a number of immediate benefits:
+    ->automatically creates a pipeline build process for all branches and pull requests
+    ->code review/iteration on the pipeline
+    ->audit trail for the Pipeline
+    ->single "source of truth" for the Pipeline, which can be viewed and edited by multiple members of the project.
+        ->SINGLE source of truth (SSOT) is the practice of aggregating the data from many systems
+        ->within an organization to a SINGLE LOCATION
+        ->not a system, tool or strategy(?), is it a DB/structure/architecture?
+
+
+-Node
+->machine which is part of the jenkins enviroment, capavle of executing a Pipeline
+
+-Stage
+->defines a conceptually distinct subset of tasks
+->performed through entire Pipeline( eg, "build", "test", "deploy")
+->used by many plugins to visualize or present jenkins Pipeline status/progress
+
+-Step
+->a single task
+->tells Jenkins what to do at a particular point in time
+->execute shell command <make>
+
+*SP is using declarative Pipeline syntax
+1)Pipeline
+2)agent any
+3)stage
+4)steps
+5)sh Pipeline step that executes the given shell command
+6)junit is another Pipeline step, for aggregating test reports
+-link for the website for the above information
+https://www.jenkins.io/doc/book/pipeline/#_footnotedef_1

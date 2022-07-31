@@ -1,0 +1,129 @@
+A property of universal computation - Turing completeness
+->A computer program can write a computer program
+->it's a big part of the definition of a compiler
+->it is how the go test command works
+    ->a)it scans the packages to be tested
+    ->b)writes out a Go program containing a test harness, customised for the package
+    ->c)compiles and runs it.
+
+There are many other examples of programs that write programs. Yacc(a program)
+ ->reads in a description of a grammar
+ ->writes out a program to parse(format one string of data to another, eg;for human readability etc)that grammar
+ ->the protocol buffer "compiler" reads an interface description
+    ->and emits structure definitions, methods and other support code.
+->configuration tools of all sorts work like this too,
+    ->examining metadata or the environment and emitting scaffolding customized to the local state.
+
+Programs that write programs are therefore important elements in SWE.
+-But programs like Yacc that produce source code, need to be integrated into the build process
+->so their output can be compile.
+    -go generate is to drive the process
+    -of producing the go source file**
+->when an external build tool like make is being used, this is usually easy to do.
+->But in Go, whose go tool gets all necessary build information from the Go source, there is a problem.
+->no mechanism to run Yacc from the go tool alone.
+
+
+Go v1.4 has a new command that makes it easier to run such tools.
+-called ||go generate||
+-works by scanning for special comments in Go source code that identify general commands to run.
+-go generate is not part of go build
+-contains no dependency analysis, and must be run explicitly before running go build.
+    - dependency analysis explanation
+-to be used by author of the go package, not its clients.
+
+To have ||go generate|| drive the process of producing go source file that implements
+-this comment has to be added anywhere in the file
+    -//go:generate xxxxx yyyy
+-this text is just the command above
+    -prefixed by a special comment
+    -recognized by ||go generate||
+->the comment must start at the beginning of the line(the line itself, or the entire row for layman's term)
+->and have no spaces between the <//> and <go generate>
+->after that marker(the market of <//go:generate>, the rest of the line specifies a command for go generate to run
+    ->a)go generate
+    ->b)go build
+    ->c)go test
+->the directory will then hold the full set of Go source files.
+->the generated 
+----------------------------------------------------------------ares task----------------------------------------------------------------
+-To do
+a)create one more endpoint -> pay endpoint
+ai)refer to authorise endpoint and functions etc
+
+
+-Pay endpoint flow
+internal
+->repositry+gateway
+-->interface tp access DB
+--->endpoint(route)
+    ->handler
+    ->input validation(sanitization)
+
+-Synopsis of Ares
+->to extract credit card part to ares
+
+
+---------------------------------read up on upgrading codebase--------------------------------------------------
+Resources(update legacy resource)
+https://increment.com/software-architecture/ask-an-expert-upgrade-outdated-codebase/
+https://selleo.com/blog/fixing-and-updating-legacy-code
+
+Attack plan(where to start from)
+https://levelup.gitconnected.com/the-art-of-coding-plan-of-attack-d740a101117d
+
+*PLAN
+-bottom up
+->deal with dependencies first
+->low level supporting functions and utilities and build upwards one layer at a time
+->service into controller(business logic) and repo(DB)
+
+-Hybrid approach(option 3)
+->start from repositry first? since gateway->handler->controller/business logic->repo
+    ->since everything from repo, refactor repo codes first(then work bottom up)
+->spread rewrite over a period of time. minimize technical debt and financial cost.
+->know what to change first, features that are core and business-critical
+->start on controllers first? ->do bottom up too?
+->CI/CD and unit test do up first? so the test and CICD processes can take
+    ->take place automatically?
+->change structure without changing functionality
+->refactor code that hs unit tests first
+    ->always start with the deepest point of your code
+        ->test after refactoring
+            ->have CICD
+-> so CICD and unit tests first(or main code change first, since unit test is based on the main codes?)
+->HAVE a clear goal in mind
+->any new feature etc? if needed, factor that in
+
+-Tack the new on to old(option 2)
+->add new features built with new technology to the existing codebase
+->need to know what is working and what isn't working
+->assume all lightcabin legacy code works(?)
+
+
+-Big bang rewrite
+->changing codebase from scratch
+->cutting all users in a single conversion
+->time consuming
+->harder to provide maintenance
+-------------light cabin to bobcat task-------------
+
+1)major refactoring of codes(pkg organization)
+2)jenkins script(CICD - k8?)
+3)yaml files(kubernetes files-yaml files under k8 too?)
+4)makefiles
+5)changing unit test
+6)mockery for xxxxxxxxx
+-factor in for considerations
+-dont do big bang project
+-settle parts by parts
+-come up with attack plan
+
+script first
+last : yaml files and jenkins script
+2nd last : makefiles(project run? - or bottom up with each individual sections)
+3rd last: mockery and change unit test
+4th last: major code refractoring
+
+order -> lowest level of dependency to highest (eg; repo first..? follow system design; bottom up)
+
