@@ -18,6 +18,8 @@ import "fmt"
 //	def: 20
 //}
 
+//test
+
 //but you can however, createa a variable of an interface type and be assigned to a concrete type value that has the methods the interface requires
 
 type tank interface {
