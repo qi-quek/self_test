@@ -1,4 +1,4 @@
-package main
+package three_int_sum
 
 import (
 	"fmt"
