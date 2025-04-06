@@ -12,7 +12,7 @@ func main() {
 	wg.Add(len(strings))
 	fmt.Println(len(strings))
 	for _, val := range strings {
-		//by inputting that we are looking for string argument string, the go-rountine will not skip the first 2 strings
+		// by inputting that we are looking for string argument string, the go-rountine will not skip the first 2 strings
 		go func(string) {
 			fmt.Println(val)
 			wg.Done()
@@ -25,8 +25,8 @@ func main() {
 
 }
 
-//This prints only (1)"there", (2)"there", (3)"there"
-//func main() {
+// This prints only (1)"there", (2)"there", (3)"there"
+// func main() {
 //	var wg sync.WaitGroup
 //	messages := []string{"hello", "world", "greetings"}
 //	wg.Add(len(messages))
@@ -37,4 +37,4 @@ func main() {
 //		}()
 //	}
 //	wg.Wait()
-//}
+// }
