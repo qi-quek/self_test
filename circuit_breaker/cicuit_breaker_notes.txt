@@ -1,0 +1,29 @@
+Circuit Breaker
+
+3 states
+
+Closed
+- everything working fine
+- requests flows normally
+
+Open
+- too many failures
+- system stops sending requests to the services for a cooldown period
+
+Half Open
+- After the cooldown period
+-- if they succeed, goes back to closed state
+-- if they fail, goes back to open state
+
+How it works
+- Client sends  a post request to the circuit breaker
+- implemented in api gateway (sits infront of microservices)
+-- appgateway is the layer infront of the api-gateway
+- if the circuit breaker is in a closed state, the request is forwarded to the backend sever for processing
+- if the server fails to respond due to timeout/error/service unavailability
+-> after detecing repeated failures, the circuit breaker transitions to the open states
+- cooldown period of x seconds ( or any self defined polling state)
+-> after poll or passing of x duration, circuit breaker is now in half-open state
+-> requests will be then sent to check on the availability of the service to be called
+- if a 200 is received, circuit breaker goes back to fully-closed state
+- if not, it will be hanging/waiting on the fully-opened state
